@@ -14,7 +14,6 @@ public class FunctionReadCSV {
     float [] ClosePrice = new float[999];
     float averageprice;
     int j=0;
-    
     ArrayList<String> myList = new ArrayList<String>();
  
  //****************************read data and split from csv****************************
