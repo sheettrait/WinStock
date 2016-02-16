@@ -44,20 +44,21 @@ public class ShowResult extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		tableModel.addRow(ColumnNames);
+		System.out.println(a.number+"  "+a.innerResult.size());
+//**************************output the number**************************
 		for(int x=0;x<a.number;x++){
 			newlines[0] = a.DisPlayNameList.get(x);
-			System.out.println(newlines[0]); 
-			for(int y=0;y<a.innerResult.size();y++){
+			for(int y=0;y<3;y++){					//the column number u need 
 				newlines[y+1]= a.FinalResult.get(x).get(y).toString();
-				System.out.println(newlines[y+1]); 
+				System.out.println(newlines[y+1]);
 			}
 			tableModel.addRow(newlines);
 		}
-		
+//**************************end output the number**************************
 		table = new JTable(tableModel);
 		table.setBounds(28, 118, 161, -97);
 		contentPane.add(table);
 		setVisible(true);
 	}
-
+	
 }

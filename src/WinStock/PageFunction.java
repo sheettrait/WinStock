@@ -20,10 +20,8 @@ public class PageFunction {
 
 	public void getStockNumber(){
 		try{
-			BufferedReader br = new BufferedReader(new FileReader("D:\\TestFile.txt")); 
+			BufferedReader br = new BufferedReader(new FileReader("D:\\fian.txt")); 
 			while((line = br.readLine())!=null){
-//				System.out.println(ElementNumber);
-//				System.out.println(line);
 				GetDataFromAPI search = new GetDataFromAPI(line);	//call the function
 				EPSList.add(search.GetEPS());
 				PERatioList.add(search.GetPERatio());

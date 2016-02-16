@@ -14,10 +14,10 @@ public class GetDataFromAPI {
 			//1.g   ,   2.h   ,   3.e=eps   ,   4.r=p/e ratio   ,   5.l1=close price, 6n=name
 			URL url = new URL(DataURL);
 			InputStream is = url.openStream();
-			System.out.println("123");
 	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
             while ( (CSVLine = br.readLine()) != null){	
             	if(CSVLine!=null)  {
+         //   		System.out.println(CSVLine);
             		for(String d : CSVLine.toString().split(",")){
             			if(d.equals("N/A")){
             				d="0";

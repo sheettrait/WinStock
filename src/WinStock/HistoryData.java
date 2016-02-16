@@ -7,51 +7,8 @@ public class HistoryData {
 	String FromYear,FromMonth,FromDate,ToYear,ToMonth,ToDate;
 	String historyURL=null;
 	String StockNumber=null;
-	int JudgeMonth = 10;
-	
-//*****************************get the url from yahoo*******************************
-	public String GetURL(){
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("FromYear:");
-		FromYear = scanner.next();
-		System.out.println("FromMonth:");
-		FromMonth = scanner.next();
-		System.out.println("FromDate:");
-		FromDate = scanner.next();
-		System.out.println("ToYear:");
-		ToYear = scanner.next();
-		System.out.println("ToMonth:");
-		ToMonth = scanner.next();
-		System.out.println("ToDate:");
-		ToDate = scanner.next();
-		System.out.println("StockNumber");
-		StockNumber = scanner.next();
-		JudgeMonth = Integer.valueOf(FromMonth);
-		if(JudgeMonth>10){
-			JudgeMonth = JudgeMonth-1;
-			FromMonth = String.valueOf(JudgeMonth);
-			System.out.println("hi"+FromMonth);
-		}
-		else{
-			JudgeMonth = JudgeMonth-1;
-			FromMonth = String.valueOf(JudgeMonth);
-			FromMonth = "0" + FromMonth;
-			System.out.println("hi"+FromMonth);
+	float FivePrice,FifteenPrice,ThirtyPrice;
 
-		}
-		JudgeMonth = Integer.valueOf(ToMonth);
-		if(JudgeMonth>10){
-			JudgeMonth = JudgeMonth-1;
-			ToMonth = String.valueOf(JudgeMonth);
-		}
-		else{
-			JudgeMonth = JudgeMonth-1;
-			ToMonth = String.valueOf(JudgeMonth);
-			ToMonth = "0" + ToMonth;
-		}
-		historyURL = PrehistoryURL + StockNumber + ".TW&a=" + FromMonth + "&b=" + FromDate + "&c=" + FromYear + "&d=" + ToMonth + "&e=" + ToDate+ "&f="+ToYear+"2016&g=d&ignore=.csv";
-		return historyURL;
-	}
 	public String thirtyQueryURL(){//(int Year,int Month,int date){
 		Calendar calendar = Calendar.getInstance();
 		int NowYear = calendar.get(Calendar.YEAR);
@@ -96,23 +53,77 @@ public class HistoryData {
 		return historyURL;
 	}
 //**********************************end getting the url******************************
-	public static void main(String args[]){
-		HistoryData a = new HistoryData();
+
+	public HistoryData(String Stock){
 		FunctionReadCSV fifteen = new FunctionReadCSV();
 		FunctionReadCSV thirty = new FunctionReadCSV();
 		FunctionReadCSV five = new FunctionReadCSV();
-		String temp=null;
-//		aa = a.GetURL();
-//		System.out.println(aa);
-		Scanner scanner = new Scanner(System.in);
-		a.StockNumber = scanner.nextLine();
-		temp = a.fiveQueryURL();
+		this.StockNumber = Stock;
+		String temp = null;
+		temp = fiveQueryURL();
+		FivePrice = five.ReadData(temp);
 		System.out.println("5 days average = " + five.ReadData(temp));
-		temp = a.fifteenQueryURL();
+		temp = fifteenQueryURL();
+		FifteenPrice =  fifteen.ReadData(temp);
 		System.out.println("15 days average = " + fifteen.ReadData(temp));
-		temp = a.thirtyQueryURL();
+		temp = thirtyQueryURL();
+		ThirtyPrice =  thirty.ReadData(temp);
 		System.out.println("30 days average = " + thirty.ReadData(temp));
+	}
+	public void JudgeTrend(float fivedays,float fifteendays,float thirtydays){
 		
-//		bb.ReadData("http://real-chart.finance.yahoo.com/table.csv?s=2330.TW&a=00&b=1&c=2016&d=00&e=12&f=20162016&g=d&ignore=.csv");
+	}
+	public static void main(String args[]){
+		String tempstocknumber;
+		Scanner scanner = new Scanner(System.in);
+		tempstocknumber = scanner.nextLine();
+		scanner.close();
+		HistoryData Test = new HistoryData(tempstocknumber);
+		
 	}
 }
+/*
+  //*****************************get the url from yahoo*******************************
+	public String GetURL(){
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("FromYear:");
+		FromYear = scanner.next();
+		System.out.println("FromMonth:");
+		FromMonth = scanner.next();
+		System.out.println("FromDate:");
+		FromDate = scanner.next();
+		System.out.println("ToYear:");
+		ToYear = scanner.next();
+		System.out.println("ToMonth:");
+		ToMonth = scanner.next();
+		System.out.println("ToDate:");
+		ToDate = scanner.next();
+		System.out.println("StockNumber");
+		StockNumber = scanner.next();
+		JudgeMonth = Integer.valueOf(FromMonth);
+		if(JudgeMonth>10){
+			JudgeMonth = JudgeMonth-1;
+			FromMonth = String.valueOf(JudgeMonth);
+			System.out.println("hi"+FromMonth);
+		}
+		else{
+			JudgeMonth = JudgeMonth-1;
+			FromMonth = String.valueOf(JudgeMonth);
+			FromMonth = "0" + FromMonth;
+			System.out.println("hi"+FromMonth);
+
+		}
+		JudgeMonth = Integer.valueOf(ToMonth);
+		if(JudgeMonth>10){
+			JudgeMonth = JudgeMonth-1;
+			ToMonth = String.valueOf(JudgeMonth);
+		}
+		else{
+			JudgeMonth = JudgeMonth-1;
+			ToMonth = String.valueOf(JudgeMonth);
+			ToMonth = "0" + ToMonth;
+		}
+		historyURL = PrehistoryURL + StockNumber + ".TW&a=" + FromMonth + "&b=" + FromDate + "&c=" + FromYear + "&d=" + ToMonth + "&e=" + ToDate+ "&f="+ToYear+"2016&g=d&ignore=.csv";
+		return historyURL;
+	}*/
+ 
