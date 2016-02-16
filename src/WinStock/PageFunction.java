@@ -38,7 +38,7 @@ public class PageFunction {
 //***********************************end getting the stock number***********************************
 	public void SelectStock(){
 		for(int j=0;j<this.ElementNumber;j++){
-			innerResult= new ArrayList<Float>();
+			innerResult= new ArrayList<Float>();		//restart
 			if(EPSList.get(j)>1){
 				if(PERatioList.get(j)<25){
 					if(ClosePriceList.get(j)>15){
@@ -73,9 +73,9 @@ public class PageFunction {
 		getStockNumber();
 		SelectStock();
 	}	
-	public static void main(String[] args){
-		PageFunction a = new PageFunction();
+//	public static void main(String[] args){
+	//	PageFunction a = new PageFunction();
 //		a.getStockNumber();
 //		a.SelectStock();
-	}
+//	}
 }
